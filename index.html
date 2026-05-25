@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <title>С Днём Рождения!</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        user-select: none;
+      }
+
+      body {
+        font-family: system-ui, "Segoe UI", "Roboto", sans-serif;
+        background: linear-gradient(145deg, #fff9f0 0%, #ffe6e6 100%);
+        color: #3c2a2a;
+        padding: 20px;
+        min-height: 100vh;
+      }
+
+      .container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding-bottom: 40px;
+      }
+
+      /* секции */
+      .section {
+        background: rgba(255, 255, 255, 0.8);
+        border-radius: 48px;
+        padding: 24px 20px;
+        margin-bottom: 24px;
+        backdrop-filter: blur(2px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+      }
+
+      h1 {
+        font-size: 2.4rem;
+        text-align: center;
+        color: #e85d04;
+        margin-bottom: 12px;
+      }
+
+      .greeting-text {
+        text-align: center;
+        font-size: 1.2rem;
+        font-weight: 500;
+      }
+
+      /* галерея */
+      .photo-gallery {
+        display: flex;
+        gap: 12px;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        padding: 8px 4px 16px;
+      }
+      .photo-gallery img {
+        width: 260px;
+        height: 260px;
+        object-fit: cover;
+        border-radius: 36px;
+        scroll-snap-align: start;
+        box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2);
+        border: 3px solid white;
+      }
+
+      .love-text {
+        font-size: 1.3rem;
+        line-height: 1.4;
+        text-align: center;
+        font-weight: 500;
+        background: #fff0e0;
+        border-radius: 32px;
+        padding: 20px;
+        font-style: italic;
+      }
+
+      /* Сетка подарков */
+      .gifts-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 20px;
+        margin-top: 16px;
+      }
+
+      /* 3D карточка-подарок */
+      .gift-card {
+        background-color: transparent;
+        height: 200px;
+        perspective: 1000px;
+        cursor: pointer;
+      }
+      .card-inner {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        transition: transform 0.6s;
+        transform-style: preserve-3d;
+        border-radius: 28px;
+        box-shadow: 0 12px 18px rgba(0, 0, 0, 0.1);
+      }
+      .gift-card.flipped .card-inner {
+        transform: rotateY(180deg);
+      }
+      .card-front,
+      .card-back {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        backface-visibility: hidden;
+        border-radius: 28px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 16px;
+        box-sizing: border-box;
+      }
+      .card-front {
+        background: linear-gradient(135deg, #ffb347, #ff6b6b);
+        border: 3px solid gold;
+        color: white;
+        font-weight: bold;
+        font-size: 2rem;
+        transform: rotateY(0deg);
+      }
+      .card-front span {
+        background: rgba(0, 0, 0, 0.3);
+        border-radius: 60px;
+        padding: 8px 16px;
+        font-size: 0.9rem;
+      }
+      .card-back {
+        background: #fef9e8;
+        color: #5e3a1c;
+        transform: rotateY(180deg);
+        font-size: 0.9rem;
+        font-weight: 500;
+        text-align: center;
+        border: 1px solid #ffcd94;
+        justify-content: center;
+        gap: 12px;
+      }
+      .gift-emoji {
+        font-size: 3rem;
+      }
+      .gift-title {
+        font-weight: bold;
+        font-size: 1.1rem;
+      }
+
+      footer {
+        text-align: center;
+        margin-top: 20px;
+        font-size: 0.8rem;
+        color: #b47c44;
+      }
+
+      /* подстройка под Telegram */
+      @media (max-width: 500px) {
+        .gifts-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .gift-card {
+          height: 180px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <!-- 1. Поздравление -->
+      <div class="section">
+        <h1>🎉 С Днём Рождения! 🎂</h1>
+        <div class="greeting-text">✨ Сегодня твой особенный день! ✨</div>
+      </div>
+
+      <!-- 2. Фотографии совместные (замени ссылки на свои реальные фото) -->
+      <div class="section">
+        <h2 style="font-size: 1.5rem">📸 Наши моменты</h2>
+        <div class="photo-gallery" id="photoGallery">
+          <!-- ВСТАВЬ СВОИ ССЫЛКИ НА ФОТО. Это примеры, обязательно замени! -->
+          <img src="https://picsum.photos/id/20/400/400" alt="Фото 1" />
+          <img src="https://picsum.photos/id/36/400/400" alt="Фото 2" />
+          <img src="https://picsum.photos/id/58/400/400" alt="Фото 3" />
+        </div>
+      </div>
+
+      <!-- 3. Текст о любви -->
+      <div class="section">
+        <div class="love-text">
+          ❤️ Моя самая любимая, с каждым днём я люблю тебя всё сильнее.<br />
+          Ты — моё счастье, вдохновение и воздух. Спасибо, что ты есть! ❤️
+        </div>
+      </div>
+
+      <!-- 4. Сетка подарков (скрыты до нажатия, переворот) -->
+      <div class="section">
+        <h2 style="font-size: 1.5rem; text-align: center">
+          🎁 Выбери подарок 🎁
+        </h2>
+        <div class="gifts-grid" id="giftsGrid"></div>
+        <p style="font-size: 12px; text-align: center; margin-top: 16px">
+          👆 Нажми на любой — узнаешь, что внутри!
+        </p>
+      </div>
+      <footer>С любовью, твой человек 💖</footer>
+    </div>
+
+    <script>
+      // ----- СПИСОК ПОДАРКОВ (каждый: что написано спереди, описание сзади)
+      const gifts = [
+        {
+          front: "🎀",
+          title: "Сюрприз №1",
+          description: "✨ Романтический ужин при свечах (я готовлю!) ✨",
+        },
+        {
+          front: "💎",
+          title: "Сюрприз №2",
+          description: "💎 Выходные в спа-отеле — только ты и я 💎",
+        },
+        {
+          front: "📖",
+          title: "Сюрприз №3",
+          description: "📖 Фотоальбом наших воспоминаний + личное письмо 📖",
+        },
+        {
+          front: "🍫",
+          title: "Сюрприз №4",
+          description: "🍫 Коробка любимых сладостей и массаж от меня 🍫",
+        },
+        {
+          front: "🎫",
+          title: "Сюрприз №5",
+          description: "🎫 Билеты на концерт твоей мечты 🎫",
+        },
+        {
+          front: "🕯️",
+          title: "Сюрприз №6",
+          description: "🕯️ Утро с завтраком в постель и ванна с пеной 🕯️",
+        },
+      ];
+
+      const grid = document.getElementById("giftsGrid");
+
+      function buildCards() {
+        grid.innerHTML = "";
+        gifts.forEach((gift, index) => {
+          const cardDiv = document.createElement("div");
+          cardDiv.className = "gift-card";
+          cardDiv.setAttribute("data-id", index);
+
+          const inner = document.createElement("div");
+          inner.className = "card-inner";
+
+          // Передняя сторона (скрытый подарок)
+          const front = document.createElement("div");
+          front.className = "card-front";
+          front.innerHTML = `
+                <div class="gift-emoji">${gift.front}</div>
+                <span>Нажми, чтобы открыть!</span>
+            `;
+
+          // Задняя сторона (описание)
+          const back = document.createElement("div");
+          back.className = "card-back";
+          back.innerHTML = `
+                <div class="gift-title">🎁 ${gift.title}</div>
+                <div>${gift.description}</div>
+                <div style="margin-top:8px;">❤️</div>
+            `;
+
+          inner.appendChild(front);
+          inner.appendChild(back);
+          cardDiv.appendChild(inner);
+
+          // Клик — переворот
+          cardDiv.addEventListener("click", (e) => {
+            e.stopPropagation();
+            // добавляем класс flipped для переворота
+            cardDiv.classList.toggle("flipped");
+          });
+
+          grid.appendChild(cardDiv);
+        });
+      }
+
+      buildCards();
+
+      // Небольшой фикс для Telegram Web App: уведомляем, что приложение готово
+      if (window.Telegram && Telegram.WebApp) {
+        Telegram.WebApp.ready();
+        Telegram.WebApp.expand(); // на весь экран
+      }
+    </script>
+  </body>
+</html>
